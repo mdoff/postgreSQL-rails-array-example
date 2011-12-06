@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @post.title %>
+</p>
+
+<p>
+  <b>Body:</b>
+  <%= @post.body %>
+</p>
+
+
+<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Back', posts_path %>
+
+<% if @post.comments %>
+<h2>Comments</h2>
+<% @post.comments.each do |comment|  %>
+<p>
+	<div class="comments">
+		<p class="commentc"><%=comment%></p>
+
+	</div>
+</p>
+<% end %>
+<% end %>
+
+<h2>Add comment</h2>
+
+<form action="<%=comment_path %>" method="POST">
+<input type="hidden" name="id" value="<%=@post.id %>"/>
+<textarea name="body" ></textarea><br/>
+<input type="submit" />
+</form>
